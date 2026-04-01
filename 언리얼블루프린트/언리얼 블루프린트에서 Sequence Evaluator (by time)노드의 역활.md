@@ -1,6 +1,5 @@
 언리얼 블루프린트에서 Sequence Evaluator (by time)노드의 역활?
 
-Gemini의 응답
 언리얼 엔진의 **애니메이션 블루프린트(AnimGraph)**에서 Sequence Evaluator 노드는 한 마디로 정의하자면 **"애니메이션을 내가 원하는 시점에 고정하거나, 수동으로 재생 시간을 조절하게 해주는 노드"**입니다.
 
 일반적인 Sequence Player 노드가 "재생 버튼을 누르면 시간이 흐름에 따라 애니메이션이 쭉 돌아가는 것"이라면, Sequence Evaluator는 **"애니메이션의 특정 프레임을 콕 집어서 보여주는 것"**에 특화되어 있습니다.
