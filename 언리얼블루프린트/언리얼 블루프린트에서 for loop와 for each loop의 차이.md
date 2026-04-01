@@ -1,6 +1,5 @@
 언리얼 블루프린트 for loop와 for each loop의 차이?
 
-Gemini의 응답
 언리얼 엔진 블루프린트에서 For Loop와 For Each Loop는 모두 반복 작업을 수행하지만, **'무엇을 기준으로 반복하느냐'**에 결정적인 차이가 있습니다.
 
 쉽게 요약하자면, **For Loop는 '숫자'**를 세고, **For Each Loop는 '목록(배열)'**을 훑는다고 생각하면 됩니다.
