@@ -1,6 +1,5 @@
 언리얼 블루프린트에서 Convert to Animation State노드의 역활?
 
-Gemini의 응답
 언리얼 엔진(UE5 기준)의 블루프린트에서 Convert to Animation State 노드는 애니메이션 노드 함수(Animation Node Functions) 시스템 내에서 사용되는 특수한 유틸리티 노드입니다.
 
 이 노드의 핵심 역할은 범용적인 애니메이션 노드 레퍼런스(Anim Node Reference)를 구체적인 '스테이트(State)' 타입으로 변환하여, 해당 스테이트에 특화된 명령을 내리거나 정보를 가져올 수 있도록 하는 것입니다.
