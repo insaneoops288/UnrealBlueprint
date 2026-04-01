@@ -1,6 +1,5 @@
 언리얼 블루프린트에서 Unrotate Vector노드의 역활?
 
-Gemini의 응답
 언리얼 엔진 블루프린트에서 Unrotate Vector 노드는 특정 회전값(Rotator)을 기준으로 벡터를 역으로 회전시키는 역할을 합니다.
 
 쉽게 말해, **"월드 공간(World Space)의 방향이나 좌표를 특정 액터의 로컬 공간(Local Space)으로 변환"**할 때 가장 많이 사용됩니다.
