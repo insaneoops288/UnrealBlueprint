@@ -1,6 +1,5 @@
 언리얼 블루프린트에서 Float Spring Interp노드의 역활?
 
-Gemini의 응답
 언리얼 엔진의 블루프린트에서 Float Spring Interp 노드는 물리적인 스프링-댐퍼(Spring-Damper) 시스템을 시뮬레이션하여 값을 부드럽게 변화시키는 역할을 합니다.
 
 일반적인 FInterp To 노드가 단순히 현재 값에서 목표 값으로 일정 비율로 이동한다면, Float Spring Interp는 **탄성(Elasticity)**과 **관성(Inertia)**이 느껴지는 훨씬 유기적이고 생동감 있는 움직임을 만들어냅니다.
