@@ -1,6 +1,5 @@
 언리얼 블루프린트에서 Is State Blending Out노드의 역활?
 
-Gemini의 응답
 언리얼 엔진의 애니메이션 블루프린트(Anim Blueprint)에서 Is State Blending Out 노드는 현재 캐릭터가 머물고 있는 스테이트(State)가 다른 스테이트로 전환(Transition)되기 시작하여 서서히 빠져나가고 있는 중인지를 확인하는 역할을 합니다.
 
 이 노드는 주로 스테이트 머신(State Machine) 내부의 로직이나 애니메이션 그래프에서 특정 상태가 종료되는 시점을 정교하게 제어할 때 사용됩니다.
