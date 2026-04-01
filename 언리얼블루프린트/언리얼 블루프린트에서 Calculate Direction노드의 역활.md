@@ -46,4 +46,3 @@ Calculate Direction: 캐릭터 기준 이동 방향을 '각도' 하나로 바꿉
 
 Base Rotation에는 보통 Get Control Rotation 또는 캐릭터의 Get Actor Rotation을 연결합니다.
 
-이 노드를 사용하여 캐릭터의 이동 애니메이션을 구현하는 중에 막히는 부분이 있으신가요? 블렌드 스페이스 설정 방법이 궁금하시다면 추가로 도와드릴 수 있습니다.
