@@ -1,6 +1,5 @@
 언리얼 블루프린트에서 Calculate Direction노드의 역활?
 
-Gemini의 응답
 Calculate Direction 노드는 애니메이션 블루프린트(AnimBP)를 만들 때 거의 필수적으로 사용되는 노드로, **캐릭터의 이동 방향과 바라보는 방향 사이의 각도(-180 ~ 180도)**를 계산해 줍니다.
 
 앞서 질문하신 Unrotate Vector가 벡터 자체를 변환한다면, Calculate Direction은 그 결과를 바탕으로 **하나의 숫자(각도)**를 뽑아내어 블렌드 스페이스(Blend Space)에 전달하기 위해 사용합니다.
