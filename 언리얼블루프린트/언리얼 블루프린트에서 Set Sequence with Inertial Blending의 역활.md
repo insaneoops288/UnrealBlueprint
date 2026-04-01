@@ -1,6 +1,5 @@
 언리얼 블루프린트 Set Sequence with Inertial Blending?
 
-Gemini의 응답
 언리얼 엔진에서 Set Sequence with Inertial Blending (또는 이와 유사한 관성 블렌딩 방식)은 애니메이션 시퀀스를 교체할 때 물리적인 관성을 계산하여 포즈를 부드럽게 연결하는 고성능 블렌딩 기술입니다.
 
 기존의 전통적인 크로스페이드(Standard Blend) 방식과 무엇이 다른지, 그리고 어떻게 사용하는지 핵심 위주로 정리해 드릴게요.
