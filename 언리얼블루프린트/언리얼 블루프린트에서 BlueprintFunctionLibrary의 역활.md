@@ -1,42 +1,65 @@
-언리얼 블루프린트에서 BlueprintFunctionLibrary의 역활?
+# **블루프린트 함수 라이브러리 (Blueprint Function Library)**
 
-언리얼 엔진에서 **블루프린트 함수 라이브러리(Blueprint Function Library)**는 프로젝트 어디에서나 접근 가능한 공용 유틸리티 함수들을 모아놓은 저장소라고 생각하시면 됩니다.
+언리얼 엔진에서 **블루프린트 함수 라이브러리**는 특정 액터나 오브젝트에 종속되지 않고, 프로젝트 어디서든 호출하여 사용할 수 있는 **'공용 도구 상자'** 역할을 합니다.
 
-쉽게 비유하자면, 특정 가전제품(특정 액터)에만 붙어 있는 버튼이 아니라, 집안 어디서든 꺼내 쓸 수 있는 **'다용도 맥가이버 칼'**을 만드는 것과 같습니다.
+## **1\. 핵심 역할**
 
-주요 역할과 특징을 정리해 드릴게요.
+### **① 로직의 재사용성 (Reusability)**
 
-1. 전역적인 재사용성 (Global Reusability)
-가장 큰 역할은 중복 코드 방지입니다.
-예를 들어, "플레이어의 경험치에 따라 등급을 계산하는 로직"이 있다고 가정해 봅시다. 이 로직은 인벤토리 UI에서도 필요하고, 결과창 UI에서도 필요하며, 플레이어 캐릭터 본체에서도 필요할 수 있습니다.
+여러 블루프린트에서 공통으로 사용하는 계산식이나 로직을 매번 새로 만들 필요가 없습니다. 라이브러리에 한 번만 정의해두면 모든 블루프린트에서 노드 검색을 통해 즉시 사용할 수 있습니다.
 
-라이브러리가 없다면: 각 블루프린트마다 똑같은 노드를 복사해서 붙여넣어야 합니다.
+### **② 중앙 집중식 유지보수**
 
-라이브러리를 사용하면: 라이브러리에 함수를 하나 만들어 두고, 필요한 곳 어디서든 이름만 검색해서 호출하면 됩니다.
+만약 공통 로직에 수정 사항이 생겼을 때, 이를 사용하는 모든 블루프린트를 찾아다닐 필요가 없습니다. 함수 라이브러리 안의 원본 함수 하나만 수정하면 이를 참조하는 모든 곳에 즉시 반영됩니다.
 
-2. 정적 함수(Static Functions)의 집합
-함수 라이브러리에 들어가는 함수들은 **'정적(Static)'**입니다. 즉, 이 함수를 쓰기 위해 특정 액터를 스폰하거나 '캐스팅(Casting)'할 필요가 없습니다.
+### **③ 캐스팅(Casting) 없는 전역 접근**
 
-어떤 블루프린트에서든 우클릭 후 함수 이름만 치면 바로 노드가 나타납니다.
+일반적인 블루프린트 함수를 다른 클래스에서 쓰려면 해당 클래스로 형변환(Cast To)을 하거나 참조 변수가 있어야 합니다. 하지만 함수 라이브러리는 \*\*정적(Static)\*\*으로 동작하므로, 별도의 참조 없이도 바로 호출이 가능합니다.
 
-함수 내부에서 Self 노드를 사용할 수 없습니다(특정 인스턴스에 종속되지 않기 때문).
+## **2\. 주요 특징 및 제약 사항**
 
-3. 프로젝트 구조의 체계화 (Organization)
-게임 로직과 상관없는 순수 연산이나 유틸리티 기능들을 분리하여 프로젝트를 깔끔하게 유지합니다.
+| 특징 | 설명 |
+| :---- | :---- |
+| **상태 없음 (Stateless)** | 라이브러리 자체는 변수를 저장할 수 없습니다. 데이터를 기억하기보다는 입력값을 받아 결과값을 내뱉는 '순수 로직'에 최적화되어 있습니다. |
+| **정적 함수 (Static)** | 라이브러리 인스턴스를 월드에 배치하거나 생성할 필요가 없습니다. |
+| **지연 노드 사용 불가** | 함수 내부에서 Delay, Timeline, Retriggerable Delay와 같은 시간 지연 노드는 사용할 수 없습니다. (이런 기능은 매크로 라이브러리를 사용해야 합니다.) |
 
-수학 계산: 특정 공식에 따른 대미지 계산, 확률 계산 등.
+## **3\. 매크로 라이브러리와의 차이점**
 
-데이터 변환: 초(Seconds) 단위를 "00:00" 형태의 문자열로 변환하는 기능 등.
+많은 개발자들이 헷갈려 하는 부분입니다. 상황에 맞는 선택이 필요합니다.
 
-검사 로직: "이 캐릭터가 현재 살아있는가?"와 같은 공통 상태 체크.
+| 구분 | 함수 라이브러리 (BFL) | 매크로 라이브러리 (BML) |
+| :---- | :---- | :---- |
+| **실행 핀** | 기본적으로 입/출력 핀이 1개씩입니다. | **여러 개의 출력 실행 핀**을 가질 수 있습니다. |
+| **잠복 노드** | Delay 등을 사용할 수 없습니다. | Delay와 같은 잠복 노드를 포함할 수 있습니다. |
+| **복잡도** | 복잡한 수학 연산이나 데이터 처리에 유리합니다. | 단순한 실행 흐름 제어(Flow Control)에 유리합니다. |
+| **컴파일** | 함수 호출 방식으로 컴파일됩니다. | 노드 자체가 복사되어 붙여넣어지는 방식으로 컴파일됩니다. |
 
-4. C++와 블루프린트의 가교 역할
-많은 경우, 복잡한 계산이나 성능이 중요한 로직은 C++에서 UBlueprintFunctionLibrary를 상속받아 구현합니다. 이렇게 하면 기획자나 디자이너들이 블루프린트에서 C++로 작성된 강력한 기능을 아주 쉽게 호출해서 사용할 수 있습니다.
+## **4\. 실전 활용 예시**
 
-💡 함수 라이브러리 vs 매크로 라이브러리
-구분	블루프린트 함수 라이브러리	블루프린트 매크로 라이브러리
-실행 방식	실제 함수 호출 (오버헤드 적음)	코드 복사/붙여넣기 방식 (인라인)
-노드 형태	실행 핀이 1개 세트인 경우가 많음	실행 핀(Exec)을 여러 개 만들 수 있음
-지연 노드	Delay 같은 노드 사용 불가	Delay, Timeline 등 사용 가능
-요약하자면: 여러 블루프린트에서 반복적으로 사용하는 로직이 있다면, 고민하지 말고 Blueprint Function Library에 담으세요. 유지보수가 훨씬 쉬워집니다!
+보통 다음과 같은 기능을 구현할 때 라이브러리를 만듭니다.
 
+1. **단위 변환:** 초 단위를 00:00:00 형태의 텍스트로 변환하는 로직.  
+2. **게임 규칙 체크:** "플레이어가 현재 아이템을 구매할 충분한 골드를 가지고 있는가?"와 같은 공통 조건 확인.  
+3. **수학 유틸리티:** 경험치 테이블 계산식, 특정 확률 계산(![][image1]) 등.  
+4. **디버그 도구:** 특정 형식의 로그를 화면에 예쁘게 출력해주는 커스텀 Print String.
+
+## **5\. 전문가의 팁 (C++ 활용)**
+
+성능이 중요한 대규모 프로젝트라면, 블루프린트에서 함수 라이브러리를 만드는 것보다 **C++에서 UBlueprintFunctionLibrary를 상속받아 구현**하는 것이 훨씬 효율적입니다.
+
+* **성능:** 수학적 연산이 많을 경우 C++이 블루프린트보다 압도적으로 빠릅니다.  
+* **노출:** C++에서 BlueprintCallable 지정자를 사용하면 블루프린트에서 노드처럼 똑같이 사용할 수 있습니다.
+
+// C++ 예시 구조  
+UCLASS()  
+class MYPROJECT\_API UMyMathLibrary : public UBlueprintFunctionLibrary  
+{  
+    GENERATED\_BODY()
+
+    UFUNCTION(BlueprintCallable, Category \= "MyMath")  
+    static float CalculateCustomDamage(float BaseDamage, float Multiplier);  
+};  
+
+
+[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAZCAYAAACsGgdbAAACmElEQVR4Xu2Wv2sUURDH71BB0ULR88j92Hfn2QQVhStstFPRQotYCGpnJVgpqFiIIPkHYgq1CVapLFMIFgErSaMgGESLiCBoEQgomsLz8719G57j3t4md414X/jy9s3Mm3k7b+btFgojjDDCf4Barbat0Wjcds497sGper1+qt1ub7Fr0Y1FUfSM9UetLi9YeyHNt8WmVqu1l4Bf4DeCnlBwkc0dZJyEq/BNs9l0ySI59i9xn2kx8LcuyA8xbxby+CDYdzhfKpV2pOjuwA6cTmQ4Psn8PWyGthsBPj7g74CV/wW/iUkrF4JNznvRZp5ncTxTyJOBPpBfjv2elVsoqDZxxipYvBX5nNdPScbm9vH8GU5Y+41AyYEL+N1ldWuoVCp7FFTBrQ5Z28W1+i6pSWr1HLJl5oetvaA64+WuYvMKnse+wjjr4mO9axtFycny1wULj2E0p6wF4iLzI8jfeo4H9reYL8GxwL4L31AP4BU2d1zB4aJuAMZr8IeaM1wTJOJsKP8DPugq48eEzFcYXzJe1DUV2hPwievRZOhOK1s8FpUZ+YHT/rRew6+RaRKdoIvL53ooX0NSczpCq+uFrE0iH+elqv75EuwkvmXfY42uvCUly+q6qFarNQw+6W2srheyNhkCnzPKUD/ffTep+sDgl6nHTOTdJDYL8Hm5XN5udSH6HreL279j5VnwNZzWOGq2blf7evwp/4mS5yZrH9qERFmNo0woI8qk1WUB+wm4Yq8MSme3i5tj2QfuJEeYdH1a7Wtzaf4GRdYXp6jNkq2dmigRBC/buzGEEtXI8cVZN6LhfrsXuRH2W/nAGOZfED5uWPnQoM8keNEY4H+SE7mcVQpDgb9nn3Jch6yuH9QwvOAjK/9n8Bv7dcUgSe57cgAAAABJRU5ErkJggg==>
