@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 Get Actor Up Vector 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 Has Authority 노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 Get Actor Up Vector 노드의 역활"
+              "title": "언리얼 블루프린트에서 Has Authority 노드의 역활"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 508.5
+    "width": 522.5026054382324
   },
   "right": {
     "id": "0afe834cdd7f0cea",
@@ -185,6 +185,10 @@
   },
   "active": "a7cba6f1ba1abdd2",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Get Data Table Row 노드의 역활.md",
+    "언리얼 블루프린트에서  Collision 종류.md",
+    "언리얼 블루프린트에서  GameplayTags의 역활.md",
+    "언리얼 블루프린트에서 Get Actor Up Vector 노드의 역활.md",
     "언리얼 블루프린트에서 for loop와 for each loop의 역활.md",
     "언리얼 블루프린트에서 Dot Product 노드의 역활.md",
     "언리얼 블루프린트에서 Distance Match to Target 노드의 역활.md",
