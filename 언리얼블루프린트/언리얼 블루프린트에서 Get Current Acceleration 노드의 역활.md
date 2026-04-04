@@ -1,45 +1,53 @@
-언리얼 엔진의 블루프린트에서 **Get Current Acceleration** 노드는 캐릭터 무브먼트 컴포넌트(Character Movement Component)가 관리하는 캐릭터가 **현재 어느 방향으로, 어느 정도의 힘으로 가속하고 있는지**를 벡터(Vector) 값으로 알려주는 노드입니다.
+# **언리얼 블루프린트: Get Current Acceleration 노드 분석**
 
-단순히 '움직이는 속도'가 아니라, 플레이어의 \*\*'이동 의지(Input)'\*\*를 확인하는 데 매우 중요한 역할을 합니다.
+Get Current Acceleration 노드는 주로 캐릭터 클래스(Character Class) 내의 **Character Movement Component**에서 현재 캐릭터가 가하고 있는 **가속도(Acceleration)** 벡터값을 가져오는 데 사용됩니다.
 
+## **1\. 노드의 핵심 역할**
 
-**1\. 핵심 개념: 속도(Velocity) vs 가속도(Acceleration)**
+이 노드가 반환하는 값은 단순한 물리적 가속도가 아니라, \*\*"캐릭터가 현재 어느 방향으로, 얼마나 강하게 움직이려고 시도하고 있는가"\*\*를 나타냅니다.
 
-이 노드를 정확히 이해하려면 Get Velocity와의 차이점을 아는 것이 가장 중요합니다.
+* **입력의 반영:** 플레이어가 키보드나 조이스틱으로 이동 입력을 주면, Character Movement Component는 이를 설정된 Max Acceleration 값에 따라 가속도 벡터로 변환합니다.  
+* **단위:** 센티미터 매 초 제곱 (![][image1]) 단위의 벡터 값입니다.
 
-* **Get Velocity:** 캐릭터의 **실제 이동 속도**입니다. 빙판길에서 미끄러지거나, 점프 후 공중에 떠 있을 때도 값이 존재합니다.  
-* **Get Current Acceleration:** 캐릭터가 **가속하려고 하는 힘**입니다. 주로 플레이어가 키보드(WASD)나 조이스틱을 입력했을 때 발생하며, 입력 방향과 무브먼트 설정의 Max Acceleration 값이 곱해진 결과입니다.
+## **2\. Velocity(속도)와 Acceleration(가속도)의 차이점**
 
+많은 초보 개발자가 Get Velocity와 Get Current Acceleration을 혼동하곤 합니다.
 
-**2\. 왜 이 노드를 사용하나요? (주요 활용 사례)**
+| 특징 | Get Velocity (속도) | Get Current Acceleration (가속도) |
+| :---- | :---- | :---- |
+| **의미** | 현재 실제로 이동 중인 속도와 방향 | 캐릭터를 움직이게 하려는 추진력/힘 |
+| **관성** | 캐릭터가 멈춰도 관성에 의해 한동안 값을 유지함 | 입력을 떼는 즉시 0, 0, 0이 될 수 있음 |
+| **활용** | 현재 이동 속력 계산, 낙하 판정 등 | 애니메이션 블렌딩, 이동 시작/중지 판정 |
 
-### **① 애니메이션 블루프린트: Idle ↔ Run 전환**
+## **3\. 주요 활용 사례**
 
-가장 흔한 활용법입니다. Velocity만 사용하면 캐릭터가 벽에 막혀서 못 가고 있을 때나, 멈추기 직전 미끄러지는 중에도 '달리기' 애니메이션이 나올 수 있습니다.
+### **① 애니메이션 블루프린트 (AnimBP)**
 
-* **해결책:** Get Current Acceleration의 길이가 **0보다 큰지** 확인합니다. 0보다 크다면 플레이어가 확실히 이동 버튼을 누르고 있다는 뜻이므로, 이때만 달리기 애니메이션을 재생하게 하면 훨씬 자연스럽습니다.
+가장 많이 사용되는 곳입니다. 캐릭터가 달리기를 시작할 때 몸을 앞이나 옆으로 기울이는 효과를 줄 때 사용합니다.
 
-### **② 캐릭터 제동 및 방향 전환 (Braking)**
+* **가속도 \> 0:** 캐릭터가 이동을 시작하거나 속도를 높이려 함 (Lean Forward 애니메이션 적용).  
+* **가속도 \= 0:** 플레이어가 입력을 멈춤 (Stop/Brake 애니메이션으로 전환).
 
-캐릭터가 급격하게 방향을 틀 때 발을 끌거나 몸을 기울이는 로직을 짤 때 유용합니다.
+### **② 캐릭터 회전 제어**
 
-* 현재 진행 방향(Velocity)과 가속하려는 방향(Acceleration)의 각도를 비교하여, 두 방향이 많이 다르면 '급정거'나 '급회전' 애니메이션을 출력할 수 있습니다.
+Orient Rotation to Movement 옵션을 사용할 때, 시스템은 내부적으로 이 가속도 벡터를 참조하여 캐릭터가 바라볼 방향을 결정합니다.
 
-### **③ 물리 기반 기울기 (Procedural Leaning)**
+### **③ AI 이동 로직**
 
-캐릭터가 가속하는 방향으로 몸을 살짝 기울이고 싶을 때 사용합니다. 가속도가 클수록 몸을 더 많이 기울이게 설정하여 속도감을 시각적으로 표현할 수 있습니다.
+AI가 다음 목표 지점을 향해 가속하고 있는지, 혹은 목표에 도달하여 가속을 멈췄는지 판단하는 기준으로 사용됩니다.
 
+## **4\. 블루프린트 활용 예시**
 
-**3\. 노드의 특징**
+가속도의 \*\*크기(Magnitude)\*\*를 확인하여 캐릭터가 현재 "이동 의지"가 있는지 확인하는 로직은 다음과 같습니다:
 
-* **컴포넌트 종속성:** 이 노드는 반드시 **Character Movement Component**로부터 드래그해서 꺼내거나, 타겟으로 연결해줘야 합니다. (일반 액터에는 없고 '캐릭터' 클래스에만 존재합니다.)  
-* **단위 벡터 아님:** 결과값은 0\~1 사이의 값이 아니라, 캐릭터 설정에 입력된 Max Acceleration 값(기본값 2048 등)까지 커질 수 있는 실제 물리량입니다. 방향만 알고 싶다면 뒤에 Normalize 노드를 붙여야 합니다.
+1. **Character Movement** 컴포넌트를 그래프로 드래그합니다.  
+2. **Get Current Acceleration** 노드를 연결합니다.  
+3. 반환된 벡터에서 **Vector Length** 노드를 연결합니다.  
+4. 이 값이 **\> 0** 인지 비교하여 Is Moving 변수를 업데이트합니다.
 
+## **5\. 주의사항**
 
-**4\. 실무 팁: "입력 확인용"**
+* 이 노드는 Character 클래스 기반의 캐릭터에서만 유효하게 작동합니다. 일반 Pawn이나 Actor에서는 Character Movement Component가 없으므로 직접 가속도 로직을 구현해야 합니다.  
+* 가속도 값은 Max Acceleration 설정값에 의해 제한됩니다. (기본값은 보통 2048 정도입니다.)
 
-만약 플레이어가 키보드를 누르고 있는지 확인하고 싶은데 Get Input Axis 값을 일일이 가져오기 번거롭다면, 이 노드를 꺼내서 **Vector Length가 0보다 큰지**만 체크해 보세요. "캐릭터가 스스로 움직이려 노력 중인가?"를 판별하는 가장 깔끔한 방법입니다.
-
-**요약**
-
-**Get Current Acceleration**은 "캐릭터가 지금 **어느 방향으로 힘을 주고 있는가?**"를 알려주는 노드입니다. 주로 \*\*애니메이션의 상태 전환(Idle/Run)\*\*이나 **입력 여부 판단**을 위해 사용됩니다.
+[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAZCAYAAAB+Sg0DAAADOElEQVR4Xu2WO2hUQRSG75IIEV/xEZdkN7n7wiUqalgUIhbiA0yhiDbBiNhoGsVKBdGQxlICGrv4KmKUFS00CGIRsQmm0SIiQhoLLUQEQSGGGL/fnSvjmE2uUVgX9oefM3Med86ZOTO7nldBBRXMhlQqtaSpqWk7w4hrKzskEom9vu/3ItuRD1Wc61M2UPIUMcjpHNKc8TsK63T9SokIyfXAHa4hDCjorU7K1ZcMJJSE+Tm2TYRibsTj8fmuoWSgmA6S6nb1YUDsvmg0usDVlwzaWZLqb2xsXOvaZgNx22jTE2xG7Vzb9Z+DpFpJ5jrDatc2E5LJ5CZiz8VisTjxx+FB1+cnzK4dwOkN8gFytfTsxAbmw8yf8MF1mUxmMeNT6F4hu3K53DwtwPwyHIPP4X5vht8JxRW70NypVdhv8Y1RkfER1FWssZz5Czhlsc2N/wEMzfClLpp5Hm8qmAKyyAFaI40c8gsJD6pIwiKMx+FVmIdJfQvbYcaTyK2/rlIA34xivyPp2tC3UMBr5Gbju97MW13foiDIN0H3dUoksovxFPKRSe4k9qXIEfhRxx7EMv+MzzPtXqDDd7fiJQOdDX0fW483zQkS1weH6urqFpr5Bfge/zWubzFUEzAAv2kho6tKp9Mrmdegb6bIGB/MKXl43g5W4rDD1uF7Gt0EcoutN9B6SnraHWfN2+abQ4w71Rl/9JopYfgBjjY0NKxw7QGUtBZigT2O/pPaIphrZ5UMHNGp2r6CWS8fnIALc7pfTVHipF+4j+GAc5sJ7PemaQED/aJfw+cdMhUos9nsIjdx5q1wPFHk9wXbMdHVB1Ch6gzzml0yBT0OfUpqCwIm4BnHFKHVMsgqnZxfeHH0GNQEDn5hty9aMWqZbhWkwnTptRHBPwHz2Ny1N8UGthY7eb2ezO/BAS/s824WGVagPiCdeb7Pwl7paLONjL/4v9+fDrsFrXZ7qtPTHRAtf51en1ckObUbPBrMtaH4j6HbafuFRcS88/WuQUXx8WXysfX2adlAXyvaOvNU52e6p4LZlHrzaha7AqUHBbaz012uvmzBrl/R0+/qyxYU1P9f/dX/W6jlXF0FIfAd7r3S0eFlw9gAAAAASUVORK5CYII=>
