@@ -1,0 +1,53 @@
+# **Advance Time by Distance Matching 노드 가이드**
+
+언리얼 엔진 5의 **디스턴스 매칭(Distance Matching)** 기술은 캐릭터의 발 미끄러짐(Foot Sliding) 현상을 방지하고, 물리적 이동과 애니메이션을 완벽하게 결합하기 위해 사용됩니다. 그 중 Advance Time by Distance Matching 노드는 가장 핵심적인 연산을 담당합니다.
+
+## **1\. 노드의 핵심 역할**
+
+기존의 애니메이션 재생 방식은 매 프레임마다 단순히 시간(![][image1])을 더해가는 방식이었습니다. 하지만 이 노드는 \*\*"캐릭터가 실제로 이동한 거리"\*\*를 기준으로 애니메이션의 어느 시점(Time)을 재생해야 할지 계산합니다.
+
+* **목표**: 물리적 이동 속도와 애니메이션 내의 루트 모션 속도가 일치하지 않을 때 발생하는 부자연스러움을 제거합니다.  
+* **주요 사용처**: 이동 시작(Start), 정지(Stop), 급커브(Pivot) 등 가속과 감속이 빈번한 구간.
+
+## **2\. 작동 원리**
+
+이 노드는 내부적으로 다음과 같은 로직을 수행합니다.
+
+1. **거리 입력**: 캐릭터가 현재 프레임에서 이동한 거리나 목표 지점까지 남은 거리를 입력받습니다.  
+2. **커브 참조**: 애니메이션 시퀀스 내에 포함된 Distance 커브(보통 루트 모션에서 추출됨)를 참조합니다.  
+3. **시간 도출**: 입력된 거리 값에 해당하는 애니메이션의 '시간(Time)' 위치를 찾아냅니다.  
+4. **업데이트**: 애니메이션의 현재 재생 위치를 해당 시간으로 점프시키거나 부드럽게 보간합니다.
+
+## **3\. 주요 입력 파라미터**
+
+| 파라미터 | 설명 |
+| :---- | :---- |
+| **Anim Instance Proxy** | 현재 애니메이션 블루프린트의 프록시 객체입니다. |
+| **Distance Traveled** | 이전 프레임 이후 캐릭터가 실제로 이동한 누적 거리입니다. (이동 시작 시 사용) |
+| **Distance to Goal** | 멈춰야 할 목표 지점까지 남은 거리입니다. (정지 애니메이션 시 사용) |
+| **Distance Curve Name** | 애니메이션 시퀀스에 포함된 거리 정보 커브의 이름입니다. (기본값은 보통 Distance) |
+| **Play Rate Range** | 애니메이션 속도를 조절할 수 있는 최소/최대 범위를 지정합니다. |
+
+## **4\. 왜 사용하는가? (이점)**
+
+### **가발 미끄러짐(Foot Sliding) 방지**
+
+캐릭터가 급격히 가속할 때 애니메이션은 천천히 재생되면 발이 땅에서 미끄러지는 것처럼 보입니다. 이 노드를 사용하면 캐릭터가 10cm 이동하면 애니메이션도 정확히 10cm 이동한 프레임을 보여주므로 미끄러짐이 사라집니다.
+
+### **가변적인 정지 위치 대응**
+
+캐릭터가 멈추는 지점은 매번 다릅니다. Distance to Goal을 사용하면 남은 거리에 맞춰 정지 애니메이션의 재생 속도를 실시간으로 조절하여, 정확한 발 위치에서 멈출 수 있게 합니다.
+
+## **5\. 실전 구현 팁**
+
+1. **커브 생성**: 이 노드를 사용하려면 반드시 애니메이션 시퀀스에 Distance 커브가 구워져(Baked) 있어야 합니다. UE5의 **Animation Data Modifier**를 사용하여 루트 모션으로부터 이 커브를 자동으로 생성할 수 있습니다.  
+2. **이동 방식 선택**:  
+   * **Forward Matching**: "내가 지금까지 얼마나 이동했나?"를 기준으로 재생. (출발, 달리기)  
+   * **Backward Matching**: "목표까지 얼마나 남았나?"를 기준으로 재생. (정지)  
+3. **성능**: 복잡한 블렌딩 트리 내에서 사용될 때 연산 비용이 발생할 수 있으므로, 필요한 로코모션 상태에서만 활성화하는 것이 좋습니다.
+
+## **요약**
+
+Advance Time by Distance Matching 노드는 **시간 대신 거리를 변수로 사용하여 애니메이션을 재생**함으로써, 게임 월드의 물리 법칙과 캐릭터의 시각적 움직임을 동기화하는 UE5의 차세대 애니메이션 도구입니다.
+
+[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF8AAAAZCAYAAABXTfKEAAAFdUlEQVR4Xu1YXWhdRRA+l0RU6k+rpunNz9l7b6KhVKwQpESq9MEWpVQk8UGo+BKwGuJDFfwpQfShIIIg2kKJVWml5CXQFwNig4YWVCyIDxalINUQEBSRFhqQYur33Z29d87cPUko0hY8Hwx7d2Z3dnZmZ3bPTZICBQoUKFCgQIH/DXp6em6uVCqvOucml6HR/v7+2+zclYB5R9M0nSf19vY+buVXCuqK2Bgl7O150AajooR93zE4OHiD4V91tPX19a2Hob+DLsJRj6Atk2Dg3WjHQL9SBtppJy+HWq2WYuOfY96FarW6Wcu4cfCHMeYezV8NMO8bsWkf7H1S6BD6l0GnseZT5KE9KXsaNPNf4ljw39L8awYYswia6+jouMXK4KDbZSN/wOBNVp4HjF1HZ5D428gY5CXQbs1fDWgnMrHD8N6jQ2HnnsDDGjXwvgKV9VjwX5Ag3a/51ww0HLTf8gPopJXGWPC0Y/wFOsbKqMdFTuVqwJOt+yrIl/B7q+LT+Z90dnau0eOvN7TDyCWeRisIQJ19wPnsmLWyPKiADWs+swu8OTrMZsRKYBYiqJ2axwAykKAzXV1ddyn+VvDe12OvO9BgGLnQ3d3dY2UB2MguceScYrehvxM0Dfk82u9BI+CXZM7H6P8J2sg+2secvwiPgf4GnZP+hNJZgnMfxtzPwP8JNC53z4Oit02NrcNJkLmejKkDGXKTKqMlWZ82fqnvGt4/mHsW9DrK2Y2YtwVjPpU9nYI99yV+ryPC+yByidcBWRmyN2Wd3HENyAmZobFWFgD5i9wgx7FPpfg9CzpN5wivgv7XrunsM07dIxCvZYC5SepC+wyNBe9OyvnyAu8Qxn1LXYnf8D7n74ZTAwMDt3prMihJkGlb7v0hL6SDvCtoE+hYIoHCUnvU4ToBmmCpkkfBcQYG7RRolLai/Y584y/awf2cB38v56J9zUVKbgaY9ArJ8hVYlqbFuP1Mfecd/7M4qQ6WA/LRDrDvfJlquSNokFMZIaDx74J3ESq3BGbaLCnRTUjWMsgtL6oABhXyw6AqgnAv2r+CPtkLHRtK5KR+gsKWI+TDjqfZVyUz8zhBfwT0Dx2eSFDRHwe9E8a0gNHDgBmefisLoNGgBedLxZAopaEHQGVuCPOfdT7VxpLm4kupuUfS5uVojade6p9Gt13xh2WtzL0RQLshu0Sd1G3lhHzLMKDtPGSyzpCWpT57fkNbC/NidxPGd6P/i7ZTDt2Pzh+oIWY3fLIDek8uV8oTCjFhgQqsLMCJs2mgpOKM86XguPOneDcW2mbSkNmS2QzB0+n8CyiTEaLnMnVF+DZLGhBncl40MzTklPMboeVJ7eIHYqOsfTjwpHxl7OQBc94f50CT6L8MXzyRqPsnijAxUadNA85yqb+MzvI3eTTSRRyrIaeh5R6h0TTefvE6X8YW+aoKvLwsUWiUQ6svBtjyqDhp3MqcL232QISsazja+RLFKlANvLR5X7SU2GXBCZxo+QSM3cDUgfL5ivogcf7k8wsz8/EisjL/ikh9OeAX6DrMPSJPwHA5NgIHpz2E/tsxnamq91ICpnTAVQnIzQwFBqrhOKn9B8mn0EVKJNe1umX+VOL1jVX813T9AKfm3pRLt5LEMkDVtEXNl/QcBZ0HzTIIWo7+czSKG1BsOnY7+CckW3aRgnMpt5cV/1/B7w85HjrfcCooIvvCSb23ziLUSc57CTXg/F8mDO60lM4J2itiPkMzmcxD4yJZF+yRv2Sm2MrvH0AHqEuN/Qg27tW8/wwVf1mXuXgSeX+z9HCM5XMzeXMwfq2R1f97ium5ApT4VOQaVhDRH/3zjX3aY/mCun76JKdMFihQoECBAgWuBv4F0sreB4duVzAAAAAASUVORK5CYII=>
