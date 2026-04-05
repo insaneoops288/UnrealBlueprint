@@ -11,10 +11,14 @@
             "id": "0304619dce6f23c7",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "언리얼 블루프린트에서 수학함수들 종류.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "새 탭"
+              "title": "언리얼 블루프린트에서 수학함수들 종류"
             }
           }
         ]
@@ -74,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 541.5026054382324
   },
   "right": {
     "id": "0590b5321fe6f477",
@@ -177,5 +181,9 @@
     }
   },
   "active": "0304619dce6f23c7",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "언리얼 블루프린트에서 애니메이션 블루프린트 노드 함수 차이점 분석.md",
+    "언리얼 블루프린트에서 수학함수들 종류.md",
+    "언리얼 블루프린트에서 블루프린트 인터페이스드의 역활.md"
+  ]
 }
