@@ -182,6 +182,7 @@
   },
   "active": "34b5204ecc6658f4",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Get Last Input Vector 노드의 역활.md",
     "언리얼 블루프린트에서 Get Base Aim Rotation 노드의 역활.md",
     "언리얼 블루프린트에서 Set Owner 노드의 역활.md",
     "언리얼 블루프린트에서 Atan2 노드의 역활.md",
@@ -207,7 +208,6 @@
     "언리얼 블루프린트에서 Map Range Clamped 노드의 역활.md",
     "언리얼 블루프린트에서 MakeArray 노드의 역활.md",
     "언리얼 블루프린트에서 Make Vector 2D 노드의 역활.md",
-    "언리얼 블루프린트에서 Make Struct Anim Override Sequence 노드의 역활.md",
     "무제.canvas"
   ]
 }
