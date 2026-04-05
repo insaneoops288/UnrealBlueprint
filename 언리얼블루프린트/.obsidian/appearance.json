@@ -1,5 +1,8 @@
 {
   "theme": "obsidian",
   "cssTheme": "",
-  "textFontFamily": "맑은 고딕"
+  "textFontFamily": "맑은 고딕",
+  "interfaceFontFamily": "맑은 고딕",
+  "monospaceFontFamily": "맑은 고딕",
+  "baseFontSize": 16
 }

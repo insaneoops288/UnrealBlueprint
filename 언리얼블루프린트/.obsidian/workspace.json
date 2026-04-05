@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 World Space 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 수학함수들 종류.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 World Space 노드의 역활"
+              "title": "언리얼 블루프린트에서 수학함수들 종류"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 547.5026054382324
+    "width": 549.5026054382324
   },
   "right": {
     "id": "0590b5321fe6f477",
@@ -182,6 +182,12 @@
   },
   "active": "0304619dce6f23c7",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Math Expression 노드의 역활.md",
+    "언리얼 블루프린트에서 애니메이션 블루프린트 노드 함수 차이점 분석.md",
+    "언리얼 블루프린트에서 수학함수들 종류.md",
+    "image1.md",
+    "언리얼 블루프린트에서 블루프린트 인터페이스드의 역활.md",
+    "언리얼 블루프린트에서 World Space 노드의 역활.md",
     "언리얼 블루프린트에서 Vertex Length XY Squared 노드의 역활.md",
     "언리얼 블루프린트에서 Vector Length XY Squared 노드의 역활.md",
     "언리얼 블루프린트에서 Vector Length XY 노드의 역활.md",
@@ -202,12 +208,6 @@
     "언리얼 블루프린트에서 Sin 노드의 역활.md",
     "언리얼 블루프린트에서 Sign(Float) 노드의 역활.md",
     "언리얼 블루프린트에서 Should Distance Match Stop 노드의 역활.md",
-    "언리얼 블루프린트에서 SetText (Text) 노드의 역활.md",
-    "언리얼 블루프린트에서 Set Widget Space 노드의 역활.md",
-    "언리얼 블루프린트에서 Set Visibility 노드의 역활.md",
-    "언리얼 블루프린트에서 Set Vector Parameter Value 노드의 역활.md",
-    "언리얼 블루프린트에서 Set Sequence with Inertial Blending 노드의 역활.md",
-    "언리얼 블루프린트에서 Set Sequence 노드의 역활.md",
     "무제.canvas"
   ]
 }
