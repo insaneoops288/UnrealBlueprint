@@ -1,4 +1,3 @@
-# **Add Gameplay Tag 노드의 역할과 활용**
 
 언리얼 엔진에서 Add Gameplay Tag 노드는 **Gameplay Tag Container** 변수에 새로운 태그를 추가하거나, **Gameplay Ability System(GAS)** 환경에서 액터에게 특정 상태(State)를 부여할 때 사용됩니다.
 
