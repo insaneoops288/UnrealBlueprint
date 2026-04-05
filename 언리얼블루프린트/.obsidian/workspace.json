@@ -180,8 +180,9 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "0304619dce6f23c7",
+  "active": "34b5204ecc6658f4",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Set Owner 노드의 역활.md",
     "언리얼 블루프린트에서 Atan2 노드의 역활.md",
     "언리얼 블루프린트에서 Atan 노드의 역활.md",
     "언리얼 블루프린트에서 Asin 노드의 역활.md",
@@ -207,7 +208,6 @@
     "언리얼 블루프린트에서 Make Vector 2D 노드의 역활.md",
     "언리얼 블루프린트에서 Make Struct Anim Override Sequence 노드의 역활.md",
     "언리얼 블루프린트에서 Magazine ammo.md",
-    "언리얼 블루프린트에서 Local to Component 노드의 역활.md",
     "무제.canvas"
   ]
 }
