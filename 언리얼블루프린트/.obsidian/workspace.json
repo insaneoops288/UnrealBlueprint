@@ -180,8 +180,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "34b5204ecc6658f4",
+  "active": "0304619dce6f23c7",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Get Character Trajectory 노드의 역활.md",
+    "언리얼 블루프린트에서 Character Trajectory Component의 역활.md",
     "언리얼 블루프린트에서 Set Playrate to Match Speed 노드의 역활.md",
     "언리얼 블루프린트에서 Set Sequence 노드의 역활.md",
     "언리얼 블루프린트에서 Set Sequence with Inertial Blending 노드의 역활.md",
@@ -206,8 +208,6 @@
     "언리얼 블루프린트에서 Orientation Warping노드의 역활.md",
     "언리얼 블루프린트에서 NormalizeRotator 노드의 역활.md",
     "언리얼 블루프린트에서 Normalize Axis 노드의 역활.md",
-    "언리얼 블루프린트에서 Nearly Equal(Float) 노드의 역활.md",
-    "언리얼 블루프린트에서 Nearly Equal (Vector) 노드의 역활.md",
     "무제.canvas"
   ]
 }
