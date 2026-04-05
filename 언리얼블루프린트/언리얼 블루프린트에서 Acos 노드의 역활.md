@@ -46,5 +46,3 @@ AI가 플레이어를 감지할 때, 단순히 거리만 보는 게 아니라 **
 ## **5\. 요약**
 
 Acos 노드는 **"방향(벡터) 데이터를 우리가 읽을 수 있는 각도(0\~180도) 데이터로 변환할 때"** 사용하는 가장 대표적인 노드입니다.
-
-[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAWCAYAAAD5Jg1dAAAAvklEQVR4XmNgGAXDAYiLi3PLy8tPAuL/uDCDsbExq5yc3Awg5zAQZykoKDQA+SFAuhPIXwpigzADUCAdiCuABjODTAcpBNFARVVAHI1sMxwoKSnxAyW3AZksQHoN0CRfdDVgADTNA6jgmJSUlAiQvopLIciU5fIQT0kC8UNsChmBEs1A/BwoqYSkcIeMjAwnXJWysrIYUPAWyEQglwXoBA4geysQX5SWlhZGmMcAdp8ASAGMLyoqygPCyGqoCwDOIS+uAS71BwAAAABJRU5ErkJggg==>
