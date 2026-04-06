@@ -182,6 +182,7 @@
   },
   "active": "0304619dce6f23c7",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 트레이스 Collision Setting 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Collision 종류.md",
     "언리얼 블루프린트에서 트레이스 Break Hit Result 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Switch on Physical Surface 노드의 역활.md",
@@ -207,7 +208,6 @@
     "언리얼 블루프린트에서 공간 Screen Space 노드의 역활.md",
     "언리얼 블루프린트에서 공간 Component Space 노드의 역활.md",
     "언리얼 블루프린트에서 공간 Bone Space 노드의 역활.md",
-    "언리얼 블루프린트에서 레이어 Set Layer Instance 노드의 역활.md",
     "무제.canvas"
   ]
 }
