@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 레이어 Animation Layer Interface의 역활.md",
+                "file": "언리얼 블루프린트에서 레이어 Linked Anim Layer 노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 레이어 Animation Layer Interface의 역활"
+              "title": "언리얼 블루프린트에서 레이어 Linked Anim Layer 노드의 역활"
             }
           }
         ]
@@ -182,6 +182,11 @@
   },
   "active": "0304619dce6f23c7",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 레이어 Linked Anim Graph 노드의 역활.md",
+    "언리얼 블루프린트에서 레이어 Layered blend per bone 노드의 역활.md",
+    "언리얼 블루프린트에서 레이어 FullBodyOverride의 역활.md",
+    "언리얼 블루프린트에서 레이어 Animation Layer Interface의 역활.md",
+    "언리얼 블루프린트에서 레이어 Animation Layers의 역활.md",
     "언리얼 블루프린트에서 애니메이션 블루프린트 노드 함수 차이점 분석.md",
     "언리얼 블루프린트에서 트레이스 커스텀 트레이스 채널 만들기.md",
     "언리얼 블루프린트에서 트레이스 Trace Channel의 종류.md",
@@ -203,11 +208,6 @@
     "언리얼 블루프린트에서 트레이스 Capsule Trace By Channel 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Box Trace For Objects 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Box Trace By Channel 노드의 역활.md",
-    "언리얼 블루프린트에서 트레이스 Multi Line Trace By Object 노드의 역활.md",
-    "언리얼 블루프린트에서 트레이스 Sphere Trace By Object 노드의 역활.md",
-    "언리얼 블루프린트에서 트레이스 Multi Sphere Trace By Object 노드의 역활.md",
-    "언리얼 블루프린트에서 트레이스 MultiSphereTraceByObject 노드의 역활.md",
-    "언리얼 블루프린트에서 트레이스 BoxTraceByChannel 노드의 역활.md",
     "무제.canvas"
   ]
 }
