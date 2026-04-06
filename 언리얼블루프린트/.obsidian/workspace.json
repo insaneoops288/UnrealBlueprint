@@ -182,6 +182,7 @@
   },
   "active": "0304619dce6f23c7",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 레이어 Linked Anim Layer 노드의 역활.md",
     "언리얼 블루프린트에서 게임플레이 태그 IGameplayTagAssetInterface의 역활.md",
     "언리얼 블루프린트에서 게임플레이 태그 언리얼 엔진 게임플레이 태그 가이드.md",
     "언리얼 블루프린트에서 게임플레이 태그 게임플레이 태그의 역활.md",
@@ -207,7 +208,6 @@
     "언리얼 블루프린트에서 네크워크 Role_AutonomousProxy 노드의 역활.md",
     "언리얼 블루프린트에서 네크워크 Role_Authority 노드의 역활.md",
     "언리얼 블루프린트에서 네크워크  Role_Authority 노드의 역활.md",
-    "언리얼 블루프린트에서 네크워크 IsLocallyControlled 노드의 역활.md",
     "무제.canvas"
   ]
 }
