@@ -182,6 +182,8 @@
   },
   "active": "0304619dce6f23c7",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 트레이스 Sphere Trace For Object 노드의 역활.md",
+    "언리얼 블루프린트에서 트레이스 Sphere Trace By Channel 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Multi Sphere Trace For Object 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Multi Line Trace By Object 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Multi Line Trace For Object 노드의 역활.md",
@@ -206,8 +208,6 @@
     "언리얼 블루프린트에서 게임플레이 태그 Matches Tag 노드의 역활.md",
     "언리얼 블루프린트에서 게임플레이 태그 IGameplayTagAssetInterface의 역활.md",
     "언리얼 블루프린트에서 게임플레이 태그 GetOwnedGameplayTags 노드의 역활.md",
-    "언리얼 블루프린트에서 게임플레이 태그 Actor Has Tag 노드의 역활.md",
-    "언리얼 블루프린트에서 게임플레이 태그 Has Tag 노드의 역활.md",
     "무제.canvas"
   ]
 }
