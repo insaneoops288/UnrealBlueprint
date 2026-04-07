@@ -180,8 +180,9 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "0304619dce6f23c7",
+  "active": "34b5204ecc6658f4",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서  Create Template Animation Blueprint 역활.md",
     "언리얼 블루프린트에서 Thread Safe의 의미.md",
     "언리얼 블루프린트에서 Add Component by Class 노드의 역활.md",
     "언리얼 블루프린트에서 Set SkeletalMesh Asset 노드의 역활.md",
@@ -207,7 +208,6 @@
     "언리얼 블루프린트에서 트레이스 Multi Box Trace For Objects 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Multi Box Trace By Channel 노드의 역활.md",
     "언리얼 블루프린트에서 트레이스 Line Trace For Objects 노드의 역활.md",
-    "언리얼 블루프린트에서 트레이스 Line Trace By Channel 노드의 역활.md",
     "무제.canvas"
   ]
 }
