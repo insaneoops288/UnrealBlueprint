@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 Thread Safe의 의미.md",
+                "file": "언리얼 블루프린트에서 레이어 Animation Layer Interface의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 Thread Safe의 의미"
+              "title": "언리얼 블루프린트에서 레이어 Animation Layer Interface의 역활"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 488.5
+    "width": 493.5026054382324
   },
   "right": {
     "id": "0590b5321fe6f477",
@@ -182,8 +182,8 @@
   },
   "active": "0304619dce6f23c7",
   "lastOpenFiles": [
-    "언리얼 블루프린트에서 Add Component by Class 노드의 역활.md",
     "언리얼 블루프린트에서 Thread Safe의 의미.md",
+    "언리얼 블루프린트에서 Add Component by Class 노드의 역활.md",
     "언리얼 블루프린트에서 Set SkeletalMesh Asset 노드의 역활.md",
     "언리얼 블루프린트에서 레이어 Linked Anim Graph 노드의 역활.md",
     "언리얼 블루프린트에서 레이어 Linked Anim Layer 노드의 역활.md",
