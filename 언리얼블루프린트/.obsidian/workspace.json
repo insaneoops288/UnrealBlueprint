@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "75ccf536ccfec08a",
+        "id": "9135712f9603beb1",
         "type": "tabs",
         "children": [
           {
-            "id": "492b5d2580b63c14",
+            "id": "a8cece36171f8052",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -180,7 +180,7 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "34b5204ecc6658f4",
+  "active": "a8cece36171f8052",
   "lastOpenFiles": [
     "언리얼 블루프린트에서 게임플레이 태그 게임플레이 태그의 역활.md",
     "무제",

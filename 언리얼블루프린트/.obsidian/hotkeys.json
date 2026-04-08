@@ -1,0 +1,20 @@
+{
+  "app:switch-vault": [
+    {
+      "modifiers": [],
+      "key": "F3"
+    }
+  ],
+  "app:open-another-vault": [
+    {
+      "modifiers": [],
+      "key": "F4"
+    }
+  ],
+  "app:open-vault": [
+    {
+      "modifiers": [],
+      "key": "F5"
+    }
+  ]
+}
