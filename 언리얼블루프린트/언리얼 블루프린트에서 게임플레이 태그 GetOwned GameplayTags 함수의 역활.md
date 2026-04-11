@@ -1,6 +1,6 @@
-# **Get Owned Gameplay Tags 노드 상세 가이드**
+# **GetOwnedGameplayTags 함수 상세 가이드**
 
-Get Owned Gameplay Tags 노드는 게임플레이 태그 시스템(Gameplay Tag System)을 사용하는 액터나 컴포넌트에서 현재 활성화된 태그들을 조회할 때 사용되는 가장 기본적인 함수입니다.
+GetOwnedGameplayTags 함수는 게임플레이 태그 시스템(Gameplay Tag System)을 사용하는 액터나 컴포넌트에서 현재 활성화된 태그들을 조회할 때 사용되는 가장 기본적인 함수입니다.
 
 ## **1\. 핵심 역할**
 
