@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 레이어 Layered blend per bone 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 게임플레이 태그 GameplayTags의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 레이어 Layered blend per bone 노드의 역활"
+              "title": "언리얼 블루프린트에서 게임플레이 태그 GameplayTags의 역활"
             }
           }
         ]
@@ -182,6 +182,16 @@
   },
   "active": "a8cece36171f8052",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 게임플레이 태그 GetOwnedGameplayTags 노드의 역활.md",
+    "언리얼 블루프린트에서 게임플레이 태그 Get Owned Gameplay Tags 노드의 역활.md",
+    "언리얼 블루프린트에서 게임플레이 태그 GameplayTags의 역활.md",
+    "언리얼 블루프린트에서 게임플레이 태그 Does Container Have Tag 노드의 역활.md",
+    "언리얼 블루프린트에서 게임플레이 태그 Add Gameplay Tag 노드의 역활.md",
+    "언리얼 블루프린트에서 게임플레이 태그 Actor Has Tag 노드의 역활.md",
+    "언리얼 블루프린트에서 게임플레이 태그 언리얼 엔진 게임플레이 태그 가이드.md",
+    "언리얼 블루프린트에서 게임플레이 태그 게임플레이 태그의 역활.md",
+    "언리얼 블루프린트에서 Get Accumulated Time 노드의 역활.md",
+    "언리얼 블루프린트에서 레이어 Layered blend per bone 노드의 역활.md",
     "언리얼 블루프린트에서 Map Range Clamped 노드의 역활.md",
     "언리얼 블루프린트에서 Log String 노드의 역활.md",
     "언리얼 블루프린트에서 FInterp To 노드의 역활.md",
@@ -198,16 +208,6 @@
     "언리얼 블루프린트에서 함수 앞의 색상의 의미.md",
     "언리얼 블루프린트에서 Enum to String 노드의 역활.md",
     "언리얼 블루프린트에서 Get Actor Rotation 노드의 역활.md",
-    "언리얼 블루프린트에서 Break Hit Result 노드의 역활.md",
-    "언리얼 블루프린트에서 Random Point in Bounding Box 노드의 역활.md",
-    "언리얼 블루프린트에서 노드의 역활.md",
-    "언리얼 블루프린트에서 Set Rotation Mode 노드의 역활.md",
-    "언리얼 블루프린트에서 Get Locomotion System 노드의 역활.md",
-    "언리얼 블루프린트에서 Get Player Camera Transform 노드의 역활.md",
-    "언리얼 블루프린트에서 Make Hit Result 노드의 역활.md",
-    "언리얼 블루프린트에서 Draw Debug Sphere 노드의 역활.md",
-    "언리얼 블루프린트에서 Make Transform 노드의 역활.md",
-    "언리얼 블루프린트에서 Get Actor Location 노드의 역활.md",
     "무제",
     "무제 1.canvas",
     "무제.base",
