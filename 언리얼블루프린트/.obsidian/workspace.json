@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 게임플레이 태그 언리얼 엔진 게임플레이 태그 가이드.md",
+                "file": "언리얼 블루프린트에서 Get Actor Rotation 노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 게임플레이 태그 언리얼 엔진 게임플레이 태그 가이드"
+              "title": "언리얼 블루프린트에서 Get Actor Rotation 노드의 역활"
             }
           }
         ]
@@ -180,15 +180,16 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "a8cece36171f8052",
+  "active": "34b5204ecc6658f4",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Make Transform 노드의 역활.md",
     "언리얼 블루프린트에서 Get Actor Location 노드의 역활.md",
+    "언리얼 블루프린트에서 게임플레이 태그 언리얼 엔진 게임플레이 태그 가이드.md",
     "언리얼 블루프린트에서 Get World Rotation 노드의 역활.md",
     "언리얼 블루프린트에서 Get World Location 노드의 역활.md",
     "언리얼 블루프린트에서 Get Display Name 노드의 역활.md",
     "언리얼 블루프린트에서 게임플레이 태그 게임플레이 태그의 역활.md",
     "무제",
-    "언리얼 블루프린트에서 게임플레이 태그 언리얼 엔진 게임플레이 태그 가이드.md",
     "무제 1.canvas",
     "2026-04-08.md",
     "언리얼 블루프린트에서 Montage Notify의 역활.md",
@@ -210,7 +211,6 @@
     "언리얼 블루프린트에서 레이어 Animation Layers의 역활.md",
     "언리얼 블루프린트에서 애니메이션 블루프린트 노드 함수 차이점 분석.md",
     "언리얼 블루프린트에서 트레이스 커스텀 트레이스 채널 만들기.md",
-    "언리얼 블루프린트에서 트레이스 Trace Channel의 종류.md",
-    "언리얼 블루프린트에서 트레이스 Trace 관련 노드들.md"
+    "언리얼 블루프린트에서 트레이스 Trace Channel의 종류.md"
   ]
 }
