@@ -1,47 +1,54 @@
-# **언리얼 엔진 Get Accumulated Time 노드 분석**
+# **언리얼 엔진: Get Accumulated Time 노드 및 시간 시스템 이해**
 
-언리얼 엔진 블루프린트에서 시간 관련 노드들은 게임 로직의 흐름을 제어하는 데 필수적입니다. 그중 Get Accumulated Time (또는 Get Game Time in Seconds와 대비되는 개념으로서의 누적 시간)의 역할은 다음과 같습니다.
+언리얼 엔진에서 시간은 다양한 방식으로 측정됩니다. Get Accumulated Time은 주로 특정 시스템(예: 오디오, 미디어, 머티리얼)이나 월드 엔진 레벨에서 **누적된 시간**을 추적할 때 사용됩니다.
 
-## **1\. 노드의 주요 역할**
+## **1\. Get Accumulated Time의 주요 역할**
 
-Get Accumulated Time은 기본적으로 **월드(World)가 생성된 시점부터 현재까지 흐른 총 시간**을 초(Seconds) 단위의 부동 소수점(Float/Double) 값으로 반환합니다.
+이 노드(또는 함수)의 핵심은 \*\*"중단되지 않고 계속해서 쌓이는 시간 값"\*\*을 제공하는 것입니다.
 
-* **연속성:** 게임이 시작된 후 0에서부터 시작하여 매 프레임마다 증가합니다.  
-* **기준점:** 특정 레벨이 로드되거나 게임 세션이 시작된 시점을 기준으로 합니다.
+* **연속성:** 게임이 시작된 시점부터 현재까지 흐른 총 시간을 초(Seconds) 단위로 반환합니다.  
+* **머티리얼(Material)에서의 활용:** 머티리얼 에디터의 Time 노드가 대표적인 누적 시간 노드입니다. UV를 지속적으로 스크롤하거나, 물결 효과(Sine wave)를 줄 때 시간에 따라 변하는 값을 만들기 위해 사용됩니다.  
+* **시스템 동기화:** 오디오 재생이나 미디어 프레임 계산 시, 절대적인 시간 기준점이 필요할 때 사용됩니다.
 
-## **2\. '일시정지(Pause)'와의 관계 (가장 중요한 차이점)**
+## **2\. 블루프린트의 주요 시간 노드 비교**
 
-언리얼 엔진에는 여러 가지 시간 노드가 있으며, 가장 큰 차이점은 **게임 일시정지 시 시간이 계속 흐르는가**입니다.
+블루프린트에는 상황에 따라 선택해야 할 여러 가지 시간 노드가 있습니다.
 
-| 노드 이름 | 일시정지 시 작동 여부 | 주요 용도 |
-| :---- | :---- | :---- |
-| **Get Game Time in Seconds** | **멈춤** | 게임 플레이 로직 (전투, 이동, 스킬 쿨타임 등) |
-| **Get Real Time Seconds** | **계속 흐름** | UI 애니메이션, 시스템 로그, 일시정지 메뉴 |
-| **Get Accumulated Time** | **상황에 따라 다름** | 주로 쉐이더(Material)나 엔진 내부 서브시스템의 누적 계산 |
-
-**참고:** Get Accumulated Time은 보통 엔진 내부의 UWorld 클래스에서 관리하는 누적 시간을 의미하며, 일시정지 여부와 상관없이 월드의 수명(Lifetime) 동안 절대적으로 흐른 시간을 추적할 때 사용됩니다.
+| 노드 이름 | 특징 | 일시정지(Pause) 영향 | 시간 배율(Dilation) 영향 |
+| :---- | :---- | :---- | :---- |
+| **Get Game Time in Seconds** | 실제 게임 플레이가 진행된 시간. | **예** | **예** |
+| **Get Real Time in Seconds** | 실제 현실의 시계 시간. (디버깅 등에 유용) | **아니오** | **아니오** |
+| **Get World Delta Seconds** | 지난 프레임과 현재 프레임 사이의 시간 간격. | **예** | **예** |
+| **Get Audio Time** | 오디오 믹서 엔진 기준 누적 시간. | **아니오** | **아니오** |
 
 ## **3\. 주요 활용 사례**
 
-### **① 머티리얼 파라미터 제어**
+### **① 머티리얼 애니메이션 (Material Graph)**
 
-머티리얼(Material) 에디터 내의 Time 노드와 동기화된 작업을 할 때 유용합니다. 예를 들어, 물결이 치는 효과나 깜빡이는 불빛 효과를 블루프린트에서 제어하고 싶을 때 이 누적 시간을 파라미터로 넘겨주면 끊김 없는 애니메이션을 구현할 수 있습니다.
+머티리얼 내부에서 Time 노드는 Accumulated Time과 같습니다.
 
-### **② 성능 측정 및 프로파일링**
+* **예시:** Time → Sine → Base Color를 연결하면 시간에 따라 색상이 깜빡이는 효과를 낼 수 있습니다.
 
-특정 로직이 실행되는 데 걸리는 절대적인 시간을 측정하거나, 네트워크 동기화 시 클라이언트와 서버 간의 시간 차이를 계산하는 기준점으로 활용됩니다.
+### **② 일정 주기마다 반복되는 로직**
 
-### **③ 사인(Sine) 파형을 이용한 주기적 움직임**
+특정 로직을 5초마다 실행하고 싶을 때, 누적 시간을 나머지 연산(![][image1] Operator)과 함께 사용합니다.
 
-누적 시간 값에 Sine 노드를 연결하면 \-1에서 1 사이를 반복하는 값을 얻을 수 있습니다. 이를 통해 부유하는 오브젝트나 깜빡이는 UI 등을 쉽게 만들 수 있습니다.
+* **Logic:** (Accumulated Time % 5.0) \< DeltaSeconds  
+* 이 방식은 Delay 노드 없이도 시간에 기반한 주기적 체크를 가능하게 합니다.
 
-## **4\. 유사 노드와 비교 요약**
+### **③ 타임스탬프 기록**
 
-1. **Get World Delta Seconds:** 이전 프레임에서 현재 프레임까지 걸린 시간 (보통 0.016s 내외). 프레임 독립적인 이동 구현에 사용.  
-2. **Get Game Time in Seconds:** 일시정지 영향을 받는 '순수 게임 플레이 시간'.  
-3. **Get Real Time Seconds:** 컴퓨터의 실제 시계와 동기화된 시간. 일시정지 중에도 UI가 움직여야 할 때 사용.
+게임 세션 중 특정 이벤트가 발생한 시점을 기록하고, 나중에 그 시점으로부터 얼마나 시간이 지났는지 계산할 때 기준점으로 사용합니다.
 
-## **5\. 사용 시 주의사항**
+## **4\. 주의사항**
 
-* **정밀도 문제:** 게임이 매우 오랫동안(수십 시간 이상) 켜져 있을 경우, 값이 너무 커져서 소수점 아래 정밀도가 떨어질 수 있습니다(Floating Point Precision). 아주 정밀한 계산이 필요한 경우 주의가 필요합니다.  
-* **월드 전환:** 새로운 레벨로 넘어가면 이 값은 다시 초기화되거나 해당 월드의 생성 시점을 기준으로 다시 계산됩니다.
+1. **정밀도 문제 (Floating Point Precision):**  
+   게임이 매우 오랫동안(예: 수십 일) 켜져 있는 경우, 누적 시간 값이 너무 커져서 소수점 아래 정밀도가 떨어질 수 있습니다. 이로 인해 미세한 애니메이션이 끊겨 보일 수 있으나, 일반적인 게임 세션에서는 거의 발생하지 않습니다.  
+2. **Pause(일시정지) 대응:**  
+   인벤토리 창을 열어 게임을 멈췄을 때도 시간이 흘러야 하는지(예: UI 애니메이션), 아니면 멈춰야 하는지(예: 캐릭터 스킬 쿨타임)에 따라 Game Time과 Real Time 중 적절한 것을 선택해야 합니다.
+
+## **요약**
+
+**Get Accumulated Time**은 "시작 버튼을 누른 후 지금까지 몇 초가 지났는가?"에 대한 답을 주는 노드입니다. 주로 **변하지 않는 시간 흐름의 기준**이 필요할 때 사용합니다.
+
+[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAXCAYAAAAC9s/ZAAABnElEQVR4Xu2TP0vDUBTFE6yDqDhILW2Spk2U4uRQHFxEwYKLDk6i4FcQHRS1IAgO/gNxEnF1EcXVwUkHERd3p45+C3+nJvYl6RcQPHC49917z3335b1Y1j9M9IRhOJLP5wfSCROFQqG/Xq/3JoJBEAz5vv8ATyqVym25XF4jbCeKgOu6o6pzHMdNJBBsk7jDzZEcxn+l0TOcxy8iHMPuwi/P8xYTYo1E4kkFcQzhTrVancbOEF/FLrPJOv4F6ZwhtyztAFuaIo7JhwvxWt9GR8uMLtRqtUEavKQabMG5aGkjPsqMboIGZ/AG1+a8fYgvsY5y+A14bqVHN8F50fvvcE/F2E3FNTL+fdfR04h2btBswvq5wpyaxaMrT7MVeEwsTKq7QMJ4dD0chFes97Hj8FpTpzW/SI+OPwU/aRBorfcBN5KqDhKjC/omsAWLWkcbHHYkBszR45iu2GwgC09xe+KaNtRZD0YPx4xTvGQ2oGEd/8CsEdqj6ybSiVKp5CH4gLMsbWwzUxe9+6YKEokIHG0S0Rt81Pkzv/TfxTcjBVvVTglwqwAAAABJRU5ErkJggg==>
