@@ -1,0 +1,65 @@
+# **Get Acceleration 노드 상세 분석**
+
+언리얼 엔진(Unreal Engine)의 CharacterMovementComponent에서 제공하는 **Get Acceleration** 노드는 캐릭터의 물리적 상태와 입력 의도를 파악하는 데 핵심적인 역할을 합니다.
+
+## **1\. 노드의 기본 정의**
+
+Get Acceleration 노드는 캐릭터 무브먼트 컴포넌트가 현재 캐릭터를 가속시키기 위해 적용하고 있는 **가속도 벡터**를 반환합니다.
+
+* **반환 타입:** Vector (X, Y, Z)  
+* **단위:** ![][image1]  
+* **소속:** Character Movement Component
+
+## **2\. 핵심 역할: "입력의 의도"**
+
+가장 중요한 점은 이 노드가 단순히 물리적인 속도 변화율(![][image2])만을 나타내는 것이 아니라, 사용자의 \*\*이동 입력(Input Intent)\*\*을 반영한다는 것입니다.
+
+* **가속 중:** 플레이어가 WASD 키를 눌러 이동을 시작하면, CharacterMovementComponent는 설정된 Max Acceleration 값에 따라 가속도 벡터를 생성합니다.  
+* **등속 주행:** 최대 속도에 도달하더라도 플레이어가 계속 키를 누르고 있다면, 무브먼트 컴포넌트는 해당 방향으로 계속 힘을 가하고 있으므로 가속도 값이 0이 아닐 수 있습니다. (설정에 따라 다름)  
+* **정지/마찰:** 플레이어가 키를 떼면 입력 가속도는 즉시 0이 되지만, 실제 캐릭터는 마찰력에 의해 서서히 멈춥니다. 이때 Get Velocity는 서서히 줄어들지만 Get Acceleration은 바로 0이 됩니다.
+
+## **3\. Get Velocity vs Get Acceleration 비교**
+
+| 구분 | Get Velocity (속도) | Get Acceleration (가속도) |
+| :---- | :---- | :---- |
+| **의미** | 캐릭터가 현재 실제로 이동하는 방향과 속도 | 캐릭터가 이동하려고 가하는 힘의 방향과 크기 |
+| **계산 방식** | 위치의 시간당 변화량 | 입력 값(![][image3]) \+ 이동 로직에 의한 가속 |
+| **물리적 특성** | 관성이 포함됨 | 관성보다는 '의도'와 '추진력'에 가까움 |
+| **주요 용도** | 실제 위치 업데이트, 현재 이동 속력 확인 | 애니메이션 전환(출발/멈춤), AI 판단 |
+
+## **4\. 주요 활용 사례**
+
+### **① 애니메이션 블루프린트 (AnimBP)**
+
+애니메이션 상태 머신(State Machine)에서 캐릭터가 \*\*"달리기 시작하는 순간"\*\*과 \*\*"멈추려는 순간"\*\*을 판단할 때 사용합니다.
+
+* Velocity가 0이어도 Acceleration이 0보다 크면 "출발 애니메이션"을 재생할 수 있습니다.  
+* 반대로 Velocity는 크지만 Acceleration이 0이면 "제동(Braking) 애니메이션"으로 전환합니다.
+
+### **② AI 이동 로직**
+
+AI가 경로를 따라 이동할 때, 다음 웨이포인트를 향해 얼마나 강하게 가속하고 있는지 확인하여 AI의 움직임을 부드럽게 보정하거나 회전 속도를 조절하는 데 사용합니다.
+
+### **③ 물리 기반 효과**
+
+캐릭터의 추진력 방향으로 먼지 파티클을 발생시키거나, 가속도 크기에 따라 카메라 흔들림(Camera Shake) 효과를 줄 때 활용합니다.
+
+## **5\. 수식적 이해**
+
+캐릭터 무브먼트 내에서 최종 속도는 대략 다음과 같은 원리로 결정됩니다.
+
+![][image4]여기서 Get Acceleration은 바로 이 공식의 ![][image5] 부분을 담당하며, 이는 개발자가 캐릭터 디테일 패널에서 설정한 Max Acceleration 값에 의해 클램핑(Clamping)됩니다.
+
+**팁:** 만약 순수하게 물리 법칙에 따른 속도 변화량(![][image6])을 구하고 싶다면, 매 프레임마다 Get Velocity 값을 저장한 뒤 이전 프레임과의 차이를 계산해야 합니다. Get Acceleration은 무브먼트 컴포넌트의 '구동력'으로 이해하는 것이 가장 정확합니다.
+
+[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAYCAYAAAC1Ft6mAAADiklEQVR4Xu2WTUgVURTH52FF399mPd9z3vNJogUtrECwiJCoRSGtWkRIZJAU9CWBQfSBREELkwjMqDZtkqxFEOFCaBPUxmgRWFAQtQhx1SYw+/2dO3LfdcaPyEzwD3/m3nPuOXPOveeeGc+bxSxmMRZSqdSCkpKSo77vt+upubtmWlFZWTmvqqpqriuPwRwSaS4tLV1vErvP/OEk7KccCQK6nE6nN7qKKLB2HfwMT2tOQjWMv2az2U3u2mkBwWRhxyTKJkHwW5PJ5GpNSKhWCcEKd+G0IJPJHCCoBlc+Qaj8OrC/rbGr/OcgmfkEdIeASl3dRIDtfnhzEqc7tdC9IaBb3h/sLnZ74Bk1g1wut4akVrprRkCNFrFre3lut7pHgS4grNIYJjIB6iyZV1xcvCrCNhIE1KiSc+Uh6GTLSHqX/MlvKNcdwrYZXdIPmsRZ9Cnbdhg4X4uyE3aZ2r7A84UcMz7B+BJ8Cy9qZ+EV5Id4fpBOAcIOY/tUtoWFhYvd9wjG5z1tnqsTTDm9ln/81DN+xXiDEmPcC4csviwvL1+S5wDHyP13sF07qxfKCexnXIPTVnUW5t1wQLsU2qJ7gOwXbGKakEy7yvyHOb1RQFcNr3tmvQ0lie6NKkJzbRDzQea17to4DHcL+AVmLdlhnNVxtFsYH9Gxag2ya54JJBNc7Gewxz4NXn4O2beSmAuvU44LUJugzYB3eXdOCbJ+x3glPAIMK2A/7PTGuKAKgDU/7UC4jMXIPsGWUBYmybrnUR1IJ61TRb/C1Qm65H5QLUOG30lsm7suFqY8ZDj89Y0D+mbf2XWT5CAv3BfKTPcagMdDmQ2S2Y3uvCu3UVZWthTfB1nXZWLrLioqWuSui4QftMAhJebq2M2FPAqs0spzHFVaSkQJmcSqsT0V6rygO7aqrCzZCJA3aIOUdChj3qJ3KwZ7bSwIOo1BHwb1thzZTvhYnSW8P3Ie6qOS1I8mQT2RXHeK5w07eH+cXx3p4Hv9fGouHypdnZa7dkz4wSkp4EewHfbg5KqO3ujVlQZ0OUMb040+6oKHMoH5SeR9sJPxMc/qZJmgYzVay/PAqW5G35sJOqfiUKdtmnBDsCEjBalL6ZkPpQV9WHWJ89qs2nvUywhoecQ3SJ2zzS7PGBQohpg4/h/4QTdt88bopDMKKjWVnCufkVATIJnWuF+dGQfzI6lmMOpX52/jNxt06oOO7SS8AAAAAElFTkSuQmCC>
+
+[image2]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAYCAYAAABqWKS5AAADoUlEQVR4Xu2WT0jUQRTHd8miKOivLf7bcVcKkqDALkYEQYc8GCQEQUFRVCBBfw5GeakgJCFKpQ5lRIFEYBBEUNgh6hLZoSIvFVQgBIEdhIIUss93fzO7s+NWu4cFD37hy2/mvTdv3sy8N7+JxWYxi1mUDY2NjfOamprmhvKyobKyclFDQ8NKmnNCXYmIG2PO1dXVrQ0VIbTAVCqVqK+vnx/qigITbYG/4BR8kkgkFoY2pQAfKdhfW1u7INQ5VFdXryDgl3bOcRawLrQpGjU1NbU4GYXnQ12pIKhdyWTyYCgvAJ3QABzGfqkT0t8Ph4hpuW/8VzB4k3afo94e6kqBjh8/1/GXDnUhFLAN/CbduGR2/EOx6FTCwUkGjME1oa4UKM/xcYVmRagLwZxN2P4gyMNOVmwGzFGgOGhVwdAehE9VtFLaQtqsCWTrjdmofM25yQf6dqVNKHfQXJoznU6v5rtHwWsOzUu7ivZOvpPyIdtpN5aChq8x7IKH1IYTsFd6HC9m8C10R5F9gAfsuBYTFVh/nkMLjVMKaNJQp0tAOsY+gLvhPfgdjtji3Uv7GvxkostDtdDLSTZkneDY4OQ9xqdiuTzbp6BcvusY7QS6NUaVUpJzeyyj/1wLyzr0gK4ZdsesXwftngJj3DMtUDJ8rUL2TQty9v/L9woUdxSQAnNCBWdy+V6hvu57HR2ynwrK2ZpoUSdc3wf2Zxi7tYBcfn7r62RKFVNKvis4G+RgLFdQWlBevntyLfSF2y2BSTsKBWiPXqmWvfIEbze/Jr0byG5CJt+dTH6RTRTyL2Uryil/tRxfDbLPxua7Z5vWhMbbBf10kF8uVLD43IZtZyhHVgW/aAFeKsSVLsbmu2d7OlxkFi542OLJdL9PwjbYzATHrTxzrBrjbKXXzru+hzjjevxddPCCzxa5Tof+MBxQG15SmprohDJ/eFsn3UqlzCB7B4+5wlQ6yNgGqWA73ZHpd01/HLZ5tlezzjyYfzwH7Gk90k7HosLUrndgP5WMak0b0qUToD1i7ElrXjbkmB2TgX7HR+AbeAMOwR3wHQ4e873o7lV9GXzBRAWUsWXRG5wjH7Yg20O5A/r18C02t+1CdAX3w1e07+sGjEWndxbZR7531Z52xwvh61FGNvemvSZlW/BnkYMKuy9ZKE89FHg9xvV28foZ0F8i+rKywUQ3WF+siOfAjIPSRWkTymc8VIwE3qN0CHUzHhRwtS3UvOdAOfAHbQoG716eKFMAAAAASUVORK5CYII=>
+
+[image3]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAVCAYAAADfLRcdAAAC3klEQVR4Xu2WS2hTQRSGUxpFULFFY2heNw81JCAusgo+F0XsQhduVIogKCgUXBShoBtBiquidCMIVjdFxIAL7U4l4KbQjW4MFIQuqkJFBdGCio/vz525nV5jFUTIIgd+Zs5r5syZ/04SiXSkIx3pyC+SzWaPeZ73Dvxw8BH7mXBsu0hXJpO5SZHfGfvDzrYSCuyl0Bkwl0qlkmF/WwnFVij0E6ihRsP+thKKHDRcHW7h6wMDyWRyo3S4vAbsS6fT+/P5/IZQeDcH36XDa270imLj8fhaG1SpVFblcrk9YAdqV5Dt07E3YnILhcJmxxcEiK9ftZHroMAU9gkwBhoUeYLxvjncOHgJSjae+UliLjLOsNYtxhrjWcYL4BnFeTog80lwDjxXjs1XE9Dfg2oikUiTe8X6muLw9QWLxV0fyafBAWIOen7nr6srJq9JHfmks/gm9AmtwTiFfRb+b5GvWCyux/YEjGtNxkHTiHkdzu6HPtqqjkBW4GsU34iuAt95sMDmW528fmzfwIB0fNuZD+kDZZxTYU6sbcgjcAn0UeRRxkVQVYxowvxhizqWxFuBrxJxFN+UoLlj13W/ppC8Gy8qYf8MTw9ZG3oJvAWTEZ+jUea3wbTlvdYx643YPHc/yW/5asVeFxi1NsO7aW0YCXUB23D4EJ5piCgg3el+sKa5qS8arU172/lfva/h65Ywr4JFXaVoQszlcrm8OuJ3rAbqsVhsnQm3XWzYzS31MobvZk3xdd40ZwjfTrfwlfgaiOfzdVmndFV2YfMRHpHd6VhwvdBhN/obcNjm68lC/2BteiVYcxa9bg5/VR9s8yZQjuN45S3/P7DgOc+IkW4S7mC/5/In4/NS+Q/AmPNCNPnq+V9+HdwFT8ndu7Sk/84Sew1fA9zw/M6LPuL1Y3BKcRx4m5v3R9F1hokukc38UASPuum4NiwpL+wPC2v0mIdfPwJ2r55Q2H+RVnz9Z/kJL1vkt9a3fa4AAAAASUVORK5CYII=>
+
+[image4]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmwAAAAsCAYAAADYUuRgAAAHYUlEQVR4Xu3dbYhVRRzH8bto0fOzberund11S9TAF9sDRfSkhL4wzCgMSSyhrTAIySTBKMK3ISZYZpSFWCoWhFkYsWXEUhAFRRAGGQuS4RupoELt97tnznV23AdzdZXu9wPDOec/c+bMPffF+TNz7m6lAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDNbV1fXWXkMo6etre2cPAYAAFDX0dFxsRKGV/J4KYQw5WQmFOPGjbtAmzF5/H+oqVqtzsiDA9E93pbHAABoKHoY9qj8kcVuam9vn5zGRpvGMF5lbxrTA/5+xT5JY6ea74+TtjxeUv1hjzWPnyj19ZU2TXl8JNTnrokTJ16eHG/QvZyZthltGsOLKkeU7D6a15nqViWJsJO75f0aAADQSPRQ3KiH4z9pTA/Hl9Pj08EzTRrXvjSm460a27Q0dqLU1+w8lmtpaTlX7Zbk8dKkSZOuVP2vGlNHXnei1N+BPDYSTnrU5450FlDJeKic5KTwv9KY3lc5rHF9mdeZ6r7Pjn9QaU9jAAA0DD0El3qmozz2TIwSlc60zemSjstjSmeJRkpJ1pw8llMy0T158uQL87g5cVT9O054tX9LVt2k+FzFu9Kgr5m+D+ckSuX2bParX6Ki5Ko5PU/1492+o6PjmvwzqG5Ka2vrXeWxk161uU/XmO9+HNP2VpXpR8+qj2PuhAkTWmOb6W4X95vV53Vp+1JnZ+e4rM6fe9Fw7/yV36XaznLSls5gKnaJP6PKQSfElbg8rOMNKpvqnQAA0EicbIRihs3LTtO0/1beZqTU7y+DlaGSwzRhU9vVad1I5cnOQHT9njxWiuMZq+1ytVtQxrW/X7GntW1X6VMSdIW236msd2Ki7QGVKSoflImK9tfGrd+H6076+q0SZ8JCMUvWHZOcI6FIan5y/67XNX9M2tbvWzyvNrvm83W/Jyr2s4+dWOm8dXHGzW3n6bjLSVpbMfN6r+PxMw647KvEq0X1H2q3SW1eGi5ZC8V9qb+T5muq9KZJW7xna8pj8/cVsiVyAAAahmdT9CA8GJcgX9WD+sa8zelSJh5xNqYtq65xopLOgqnZYzrvz7SNOQlx0lEWnbew3I8zOccIgyRsTi7KRFNtFjih8X68h7XkIy6nPqXwWG37QrGcN1bjm1spkpvDPsfJlPa3J33VZuvi+X3ej2NfprIyjnlfTLYedH15jbjvfurLqll8pa43P8T7E4pk6VBZ76SotbX1oZhY7k5m9dZ4DGW7nJM2tVk7XLJmusazbcl7a/Fafg9wXhnTGK4PSRJsMWHrt0QOAEDDcLLjh7MeorcNlriMVEgSpbwM9ZBXfZ8e1DNU3sjrSiH7BWFMHnrT2ECcAOSxXBgkYVN8c7nvGSnPRsV9z0T1ezcuJhpL01icQepJY2p3aSh+cDA2Hs8sE8FU/Hwr0piv4dkz78fkrj47FY59D9AzfLX38rTdq7IjVjnp2xaKGTAncvX3GsMACXDCyecSJV5VXfuGvDJXXjuL9YaYwFaK/jb5fqRt4n1khg0A0LiccOiB+HoSavK7UHpA7vFBmdxo+6mXz+QFz5KEYslsjLZrnHiFLDEZKfXXo+s8U4lLfeakoKWl5TKPV3WzPCbH45/f8HKhk45V9U4GcZwJ2xrPgCWhMTp+IF2+c6Liccb3xbq0f0es8hLzQo31ap2zqGyv+u2eMQxFclbjz6Lj2Sp/qTzuWJx5qn+OEJNEbVdUsx856Lu6VuXueM7HHocTvpgYrlKZpzE8qePztL/N22qx/O1fi3o502N4W8c74zV2u53346yhE6h14diX/v0ZV5dJt65xldq8m7WpU92S6gDL4orvD8UvRv39ebnYM4RO3OqzbtpfEY4mlwAANB49NJdn75J56a7biURMRGY6cVHZ0lYsqT3sh7PrK8WDtbZ85XZJHyOma2xMX8iPCckXZZ3HHeJskraL4zKif3047C9Aq8eRsDkJKt8RM/X7txMLlW983NzcfL72D8XY75XiXvR5bCqf6RpPxPO8JLpVpaezs/OiGNussl5t3vMPCOIvTr8OyTuEvo7bqPT6WpUiYfQPHfK/++brfquyS+Ue9flRTKIc36P2zyfLm3t8Te/H2brPVV5TWeb7F9t4vIuTvt2Hl3L7UT9T8xlSJ9MuaawUil96HhmivB+/wzdDkTDWE3Uf+/tOugMAAHpA7qoWMzXLq8Wy5Bwfu07bad5Xm52hmBEZH2edTumfimgv3rer/R02bXdoDB3a3uxjJ0kxvtPjTc8biMedxwbgZMU/CDilnwvDc6KaJ4cAADQ8L5slh7WExTM7+Z/W8EPUydpoPkzjfwOoiTNP9f2pU6eefTLH4iVYfe4teRyjR/f/uQpJMwAAGEoI4c48htFTrVYfyWMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABnjn8BAuiv+e3X5b4AAAAASUVORK5CYII=>
+
+[image5]: <data:image/png;base64,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>
+
+[image6]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAYCAYAAAALQIb7AAABv0lEQVR4XuWVu0rEQBSGN7haeMFCY3A3bLJZZXGtJJViIegDiDaCIliIFlbbiJ1oZ+MFS1vxCSy0cUuxsPICgohio51PoN/BBIZhzUVcWPCHn5n8c86ZOXOSnEymWWBZVodt24O63hA4jrMG74vFoqXquVyu3XXdfdbuAu5UKpW2wGe+UCg8sH4Fp1W/HyEb4HgC32VTfV2AfgSPmRqhls/ne9C2TNPsVEyjwamWcBqD2/CmVCr16TZksM5aTQls4LeKNqLaRUKywmmTaZaaDeD8KkF0O/QZeMu19sozmw/D5YySaSxwWITjwaPBfK9eduhT6I9cne37fisH2pBrVG0iIQElK3EONTkxQd8YF1Rbnn34IqO8DHBCXY8FQWeVrEIY6Ifyhqknl4zQn4M6VZGyik80JBAb7UIP536VaJOMHwSeC+2lVlIzeC21VWPFQgLh+BnDS8/zusVePnp8zvXrbRjK5XIXQ4uu/1PUqc2fUd+rudAU7UaBIQfSxdRI2G5G4Wmq1lIPSdoNehUe6HoqxLUb9xvStZ9gTTYNu3ZqJGk3wT/yAg6FWmokbTdyGHgW/Lp+Bydhu2G+kqReX5Lvm6236FmJAAAAAElFTkSuQmCC>
