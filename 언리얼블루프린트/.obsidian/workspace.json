@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 모션매칭 모션매칭 노드들의 종류.md",
+                "file": "언리얼 블루프린트에서 모션매칭 Character Trajectory Component의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 모션매칭 모션매칭 노드들의 종류"
+              "title": "언리얼 블루프린트에서 모션매칭 Character Trajectory Component의 역활"
             }
           }
         ]
@@ -182,6 +182,10 @@
   },
   "active": "a8cece36171f8052",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Clear Timer by Function Name 노드의 역활.md",
+    "언리얼 블루프린트에서 Set Timer by Function Name 노드의 역활.md",
+    "언리얼 블루프린트에서 모션매칭 모션매칭 노드들의 종류.md",
+    "언리얼 블루프린트에서 모션매칭 모션 매칭(Motion Matching) 시스템의 역활.md",
     "언리얼 블루프린트에서 모션매칭 Choosers의 역활.md",
     "언리얼 블루프린트에서 모션매칭 Set Database의 역활.md",
     "언리얼 블루프린트에서 모션매칭 Pose Search Database의 역활.md",
@@ -189,8 +193,6 @@
     "언리얼 블루프린트에서 모션매칭 Character Trajectory Component의 역활.md",
     "언리얼 블루프린트에서 모션매칭 Request Motion Matching Force Selection 노드의 역활.md",
     "언리얼 블루프린트에서 모션 매칭(Motion Matching) 시스템의 역활.md",
-    "언리얼 블루프린트에서 모션매칭 모션 매칭(Motion Matching) 시스템의 역활.md",
-    "언리얼 블루프린트에서 모션매칭 모션매칭 노드들의 종류.md",
     "언리얼 블루프린트에서 Draw Debug Capsule 노드의 역활.md",
     "언리얼 블루프린트에서 Debug Draw Vector 노드의 역활.md",
     "언리얼 블루프린트에서 Get Acceleration 노드의 역활.md",
@@ -206,8 +208,6 @@
     "언리얼 블루프린트에서 레이어 Set Layer Instance 노드의 역활.md",
     "언리얼 블루프린트에서 레이어 Linked Anim Layer 노드의 역활.md",
     "언리얼 블루프린트에서 레이어 Linked Anim Graph 노드의 역활.md",
-    "언리얼 블루프린트에서 레이어 Link Anim Class Layers노드의 역활.md",
-    "언리얼 엔진 루트 모션 (Root Motion)의 역할과 활용.md",
     "무제",
     "무제 1.canvas",
     "무제.base",
