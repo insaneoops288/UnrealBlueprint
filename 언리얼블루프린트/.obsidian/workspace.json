@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 Is Valid 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 Calculate Direction노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 Is Valid 노드의 역활"
+              "title": "언리얼 블루프린트에서 Calculate Direction노드의 역활"
             }
           }
         ]
@@ -182,6 +182,11 @@
   },
   "active": "a8cece36171f8052",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Is Valid 노드의 역활.md",
+    "언리얼 블루프린트에서 Is Any Montage Playing 노드의 역활.md",
+    "언리얼 블루프린트에서 Get Anim Instance 노드의 역활.md",
+    "언리얼 블루프린트에서 Get Key Display Name 노드의 역활.md",
+    "언리얼 블루프린트에서 Is Input key Down 노드의 역활.md",
     "언리얼 블루프린트에서 Get Control Rotation 노드의 역활.md",
     "언리얼 블루프린트에서 Set Actor Rotation 노드의 역활.md",
     "언리얼 블루프린트에서 Set Actor Location 노드의 역활.md",
@@ -203,11 +208,6 @@
     "언리얼 블루프린트에서 Get Class 노드의 역활.md",
     "언리얼 블루프린트에서 Get Actor Transform 노드의 역활.md",
     "언리얼 블루프린트에서 Clamp (Float) 노드의 역활.md",
-    "언리얼 블루프린트에서 Clamp (float) 노드의 역활.md",
-    "언리얼 블루프린트에서 수학함수 Map Range Clamped 노드의 역활.md",
-    "언리얼 블루프린트에서 수학함수 Get Up Vector 노드의 역활.md",
-    "언리얼 블루프린트에서 수학함수 Get Right Vector 노드의 역활.md",
-    "언리얼 블루프린트에서 Clear Timer by Function Name 노드의 역활.md",
     "무제",
     "무제 1.canvas",
     "무제.base",
