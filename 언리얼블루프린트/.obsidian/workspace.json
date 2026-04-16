@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 Get Control Rotation 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 Is Valid 노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 Get Control Rotation 노드의 역활"
+              "title": "언리얼 블루프린트에서 Is Valid 노드의 역활"
             }
           }
         ]
@@ -182,6 +182,7 @@
   },
   "active": "a8cece36171f8052",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Get Control Rotation 노드의 역활.md",
     "언리얼 블루프린트에서 Set Actor Rotation 노드의 역활.md",
     "언리얼 블루프린트에서 Set Actor Location 노드의 역활.md",
     "언리얼 블루프린트에서 Create WB Player HUD Widget 노드의 역활.md",
@@ -193,7 +194,6 @@
     "언리얼 블루프린트에서 Get Controller 노드의 역활.md",
     "언리얼 블루프린트에서 모션매칭 Character Trajectory Component의 역활.md",
     "언리얼 블루프린트에서 Get Controller Rotation 노드의 역활.md",
-    "언리얼 블루프린트에서 Get Control Rotation 노드의 역활.md",
     "언리얼 블루프린트에서 Get World Delta Seconds 노드의 역활.md",
     "언리얼 블루프린트에서 수학함수 Get Forward Vector 노드의 역활.md",
     "언리얼 블루프린트에서 Get Rotation X Vector 노드의 역활.md",
