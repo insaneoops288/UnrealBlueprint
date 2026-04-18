@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 Retriggerable Delay 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 Stride Warping 노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 Retriggerable Delay 노드의 역활"
+              "title": "언리얼 블루프린트에서 Stride Warping 노드의 역활"
             }
           }
         ]
@@ -182,6 +182,10 @@
   },
   "active": "a8cece36171f8052",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Control Rig 노드의 역활.md",
+    "언리얼 블루프린트에서 Forward Kinematics의 역활.md",
+    "언리얼 블루프린트에서 Inverse Kinematics의 역활.md",
+    "언리얼 블루프린트에서 Retriggerable Delay 노드의 역활.md",
     "언리얼 블루프린트에서 배열에서 Last Index 노드의 역활.md",
     "언리얼 블루프린트에서 Safe Divide 노드의 역활.md",
     "언리얼 블루프린트에서 Set Simulate Physics 노드의 역활.md",
@@ -204,10 +208,6 @@
     "언리얼 블루프린트에서 Create Save Game Object 노드의 역활.md",
     "언리얼 블루프린트에서 Load Game from Slot 노드의 역활.md",
     "언리얼 블루프린트에서 Does Save Game Exist 노드의 역활.md",
-    "언리얼 블루프린트에서 Set Control Rotation 노드의 역활.md",
-    "언리얼 블루프린트에서 Get Controller 노드의 역활.md",
-    "언리얼 블루프린트에서 모션매칭 Character Trajectory Component의 역활.md",
-    "언리얼 블루프린트에서 Get Controller Rotation 노드의 역활.md",
     "무제",
     "무제 1.canvas",
     "무제.base",
