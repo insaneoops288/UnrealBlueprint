@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 626.5026054382324
+    "width": 625.5026054382324
   },
   "right": {
     "id": "0590b5321fe6f477",
@@ -180,8 +180,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "a8cece36171f8052",
+  "active": "34b5204ecc6658f4",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 Get Actor Right Vector 노드의 역활.md",
+    "언리얼 블루프린트에서 Get Actor Forward vector 노드의 역활.md",
     "언리얼 블루프린트에서 Break Hit Result 노드의 역활.md",
     "언리얼 블루프린트에서 데미지 Event RadialDamage의 역활.md",
     "언리얼 블루프린트에서 데미지 Event PointDamage의 역활.md",
@@ -206,8 +208,6 @@
     "언리얼 블루프린트에서 수학함수 Round 노드의 역활.md",
     "언리얼 블루프린트에서 Enhanced Input Action 노드의 역활.md",
     "언리얼 블루프린트에서 수학함수 Atan 노드의 역활.md",
-    "언리얼 블루프린트에서 수학함수 수학함수들 종류.md",
-    "언리얼 블루프린트에서 블루프린트 커뮤니케이션 인터페이스드의 역활.md",
     "무제",
     "무제 1.canvas",
     "무제.base",
