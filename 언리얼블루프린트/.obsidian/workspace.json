@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 수학함수 Round 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 Break Hit Result 노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 수학함수 Round 노드의 역활"
+              "title": "언리얼 블루프린트에서 Break Hit Result 노드의 역활"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 629.5026054382324
+    "width": 626.5026054382324
   },
   "right": {
     "id": "0590b5321fe6f477",
@@ -180,8 +180,9 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "a8cece36171f8052",
+  "active": "34b5204ecc6658f4",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 수학함수 Round 노드의 역활.md",
     "언리얼 블루프린트에서 Enhanced Input Action 노드의 역활.md",
     "언리얼 블루프린트에서 수학함수 Atan 노드의 역활.md",
     "언리얼 블루프린트에서 수학함수 수학함수들 종류.md",
@@ -207,7 +208,6 @@
     "언리얼 블루프린트에서 Set Static Mesh 노드의 역활.md",
     "언리얼 블루프린트에서 Calculate Direction노드의 역활.md",
     "언리얼 블루프린트에서 Blend Posed by Enum 노드의 역활.md",
-    "언리얼 블루프린트에서 Blend Posed by int 노드의 역활.md",
     "무제",
     "무제 1.canvas",
     "무제.base",
