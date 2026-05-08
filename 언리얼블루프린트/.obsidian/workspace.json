@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "언리얼 블루프린트에서 Set Owner 노드의 역활.md",
+                "file": "언리얼 블루프린트에서 Play Montage 노드의 역활.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "언리얼 블루프린트에서 Set Owner 노드의 역활"
+              "title": "언리얼 블루프린트에서 Play Montage 노드의 역활"
             }
           }
         ]
@@ -182,6 +182,8 @@
   },
   "active": "a8cece36171f8052",
   "lastOpenFiles": [
+    "언리얼 블루프린트에서 이벤트 디스패처 바인드 된 곳 찾는 법.md",
+    "언리얼 블루프린트에서 Set Owner 노드의 역활.md",
     "언리얼 블루프린트에서 Set Actor Hidden In Game 노드의 역활.md",
     "언리얼 블루프린트에서 데미지 Event PointDamage의 역활.md",
     "언리얼 블루프린트에서 Is Input Key Down 노드의 역활.md",
@@ -206,8 +208,6 @@
     "언리얼 블루프린트에서 Destroy Component 노드의 역활.md",
     "언리얼 블루프린트에서 Set Collision Response to Channel 노드의 역활.md",
     "언리얼 블루프린트에서 Play World Camera Shake 노드의 역활.md",
-    "언리얼 블루프린트에서 Spawn Emitter at Location 노드의 역활.md",
-    "언리얼 블루프린트에서 Play Sound at Location 노드의 역활.md",
     "무제",
     "무제 1.canvas",
     "무제.base",
