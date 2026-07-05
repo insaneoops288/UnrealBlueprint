@@ -4,5 +4,6 @@
   "textFontFamily": "맑은 고딕",
   "interfaceFontFamily": "맑은 고딕",
   "monospaceFontFamily": "맑은 고딕",
-  "baseFontSize": 16
+  "baseFontSize": 15,
+  "baseFontSizeAction": true
 }
